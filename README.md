@@ -39,7 +39,7 @@ pip install -r requirements.txt
 ```
 
 ## Usage for GaVaMoE 
-
+we performed our experiments on 8xA6000（48GB）.
 ### Modify the config
 
 - 1. replace `dataset`: ex: TripAdvisor, Amazon, Yelp.

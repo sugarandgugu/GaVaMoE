@@ -64,11 +64,3 @@ num_cluster    = 4
 ```python
 python inference.py
 ```
-
-### Code Reference
-
-1、https://github.com/lileipisces/PEPLER
-
-2、https://github.com/bojone/vae
-
-3、https://github.com/mistralai/mistral-inference

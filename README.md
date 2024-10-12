@@ -1,7 +1,7 @@
 # GaVaMoE: Gaussian-Variational Gated Mixture of Experts for Explainable Recommendation
 
 ## GaVaMoE Project 
-![project structure](./project.png)
+![project structure](./imgs/project.png)
 
 ## Datasets to [Download](https://github.com/lileipisces/PEPLER?tab=readme-ov-file#datasets-to-download)
 
@@ -23,7 +23,7 @@ pip install -r requirements.txt
 
 - 2、make ‘dataset’ folder in the root content, modify the ‘data_path’ and ‘index_dir’.
 
- ![project](./11.png)
+ ![project](./imgs/11.png)
 
 - 3、replace ‘pretrain_model_path’  and ‘pretrain_weight_save’，you can create a new folder named 'output' in the root content. Then, replace 'output_dir', just like this: './output/dataset/', dataset means dataset name you named.
 - 4、if you wanna use deepspeed， please add the config path on the **train function** in the **train.py**.

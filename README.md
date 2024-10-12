@@ -1,31 +1,7 @@
 # GaVaMoE: Gaussian-Variational Gated Mixture of Experts for Explainable Recommendation
 
 ## GaVaMoE Project 
-
-```python
-GaVaMoE																							--- root content				
-	model																						--- model structure & config model
-  		-config_llama3.py															--- config of llama						
-    	-config_moe.py																--- config of moe 
-      -moe_layer_llama.py														--- structure of moe
-      -vae_cluster.py																--- vae & gmm structure & pretraining
-      -vamoe.py																			--- GaVaMoE Structure
-    pepler_utils																		--- Evaluation Metric
-    	-bleu.py																			--- bleu score
-      -rouge.py																			--- rouge score
-      -utils.py																			--- some metric functions
-    utils																						--- tool for project
-    	-dataset_rs.py																--- dataset
-      -lr_utils.py																	--- learning rate function
-      -pepler_dataloader.py													--- dataloader
-      -prompt_process.py														--- integrate prompt 
-      -utils.py																			--- visuliztion & process prompt
-    ds_config.json																	--- deepspeed config 
-    train.py																				--- code for training GaVaMoE
-    inference.py																		--- generate explainable text
-    readme.md
-    requirements.txt	
-```
+![project structure](./project.png)
 
 ## Datasets to [Download](https://github.com/lileipisces/PEPLER?tab=readme-ov-file#datasets-to-download)
 
@@ -47,15 +23,7 @@ pip install -r requirements.txt
 
 - 2、make ‘dataset’ folder in the root content, modify the ‘data_path’ and ‘index_dir’.
 
-  ```python
-  GaVaMoE
-  		dataset
-  				-Amazon
-  					1
-  					2
-  					item.json
-  					reviews.pickle
-  ```
+ ![project](./11.png)
 
 - 3、replace ‘pretrain_model_path’  and ‘pretrain_weight_save’，you can create a new folder named 'output' in the root content. Then, replace 'output_dir', just like this: './output/dataset/', dataset means dataset name you named.
 - 4、if you wanna use deepspeed， please add the config path on the **train function** in the **train.py**.

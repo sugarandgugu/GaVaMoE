@@ -1,11 +1,10 @@
-#GaVaMoE: Gaussian-Variational Gated Mixture of Experts
-for Explainable Recommendation
+# GaVaMoE: Gaussian-Variational Gated Mixture of Experts for Explainable Recommendation
 
 ## GaVaMoE Project 
 
 ```python
 GaVaMoE																							--- root content				
-		model																						--- model structure & config model
+	model																						--- model structure & config model
   		-config_llama3.py															--- config of llama						
     	-config_moe.py																--- config of moe 
       -moe_layer_llama.py														--- structure of moe

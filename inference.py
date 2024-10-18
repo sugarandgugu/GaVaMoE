@@ -41,7 +41,6 @@ llm_model_path = ''
 data_path      = ''
 excel_path     = ''
 txt_path       = ''
-bert_path      = 'google-bert/bert-base-uncased'
 
 args = Args(embedding_size = embedding_size, latent_dim = latent_dim, num_cluster = num_cluster)
 config = llama_config
@@ -110,21 +109,10 @@ dfm = pd.read_excel(excel_path)
 dfm = dfm.dropna() 
 dfm = dfm[dfm['generate_text'].str.len() >= 2]
 print(dfm.columns)
-# scorer = BERTScorer(model_type = bert_path, num_layers = 12, lang="en", rescale_with_baseline = True)
-scorer = BERTScorer(model_type = bert_path, 
-                    num_layers = 12,
-                    rescale_with_baseline=True,
-                    lang="en",
-                    baseline_path="")
 
 # # Compute the Metric y_pred: [ [] , [] ]
 y_true = []
 y_pred = []
-y_true_distinct = []
-y_pred_distinct = []
-bertscore_f1_scores = []
-bertscore_recall_scores = []
-bertscore_precision_scores = []
 print(len(dfm))
 for index, row in dfm.iterrows():
     
@@ -137,16 +125,11 @@ for index, row in dfm.iterrows():
     original_text = original_text[0].split()
     generate_text = generate_text[0].split()
     
-    P, R, F1 = scorer.score([row['generate_text']], [row['original_text']])
-
     y_true.append(original_text)
     y_pred.append(generate_text)
     y_pred_distinct.append(row['original_text'].split())
     y_pred_distinct.append(row['generate_text'].split())
     
-    bertscore_precision_scores.append(P.mean().item())
-    bertscore_recall_scores.append(R.mean().item())
-    bertscore_f1_scores.append(F1.mean().item())
 
 BLEU1 = bleu_score(y_true, y_pred, n_gram=1, smooth=True)
 print('BLEU-1 {:7.4f}'.format(BLEU1))
@@ -156,26 +139,16 @@ print('BLEU-4 {:7.4f}'.format(BLEU4))
 text_test = [' '.join(tokens) for tokens in y_true]
 text_predict = [' '.join(tokens) for tokens in y_pred]
 ROUGE = rouge_score(text_test, text_predict)  # a dictionary
-#print('y_pred_distinct',y_pred_distinct)
-#print('y_pred',y_pred)
-distinct_1 = distinct_n_corpus_level(y_pred_distinct, 1)
-distinct_2 = distinct_n_corpus_level(y_pred_distinct, 2)
 
-average_bertscore_precision = np.mean(bertscore_precision_scores)
-average_bertscore_recall = np.mean(bertscore_recall_scores)
-average_bertscore_f1 = np.mean(bertscore_f1_scores)
+
+
 
 with open(txt_path, 'w') as f:
     f.write('BLEU-1 {:7.4f}\n'.format(BLEU1))
     f.write('BLEU-4 {:7.4f}\n'.format(BLEU4))
     for (k, v) in ROUGE.items():
         f.write('{} {:7.4f}\n'.format(k, v))
-    f.write(f"Distinct-1: {distinct_1:.4f}\n")
-    f.write(f"Distinct-2: {distinct_2:.4f}\n")
     
-    f.write(f'Average BERTScore Precision: {average_bertscore_precision:.4f}\n')
-    f.write(f'Average BERTScore Recall: {average_bertscore_recall:.4f}\n')
-    f.write(f'Average BERTScore F1: {average_bertscore_f1:.4f}\n')
 
 
 '''

@@ -96,7 +96,7 @@ for d in data:
     df = pd.concat([df,pd.DataFrame({'userID':d['user'],'itemID':d['item'],'feature':d['feature'],'original_text':text,'generate_text':generate_text, 'inference_time': inference_time},index=[0])], ignore_index=True)
     count = count + 1
     print(f'process {count}|{len(data["user"])}')
-# 计算平均推理时间
+
 average_inference_time = total_inference_time / len(data)
 print(f'average_inference_time: {average_inference_time:.2f} ms')
 

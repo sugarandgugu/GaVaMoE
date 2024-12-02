@@ -140,7 +140,7 @@ if __name__ == '__main__':
     console.print(f'Pretraining finished....')
     # ========================================================  Cluster Training  ======================================================== 
     console.print(f'Cluster Training...')
-    vae_clu.cluster_training(corpus = corpus, cluster_epoch = 100)
+    # vae_clu.cluster_training(corpus = corpus, cluster_epoch = 100)
 
 
     console.print(f'Start Cluster Training......', style='bold red')

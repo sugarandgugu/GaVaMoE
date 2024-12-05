@@ -1,5 +1,5 @@
 accelerate=0.34.2
-datasets=2.21.04444
+datasets=2.21.0
 deepspeed=0.15.1
 huggingface-hub=0.24.7
 openpyxl=3.1.5
